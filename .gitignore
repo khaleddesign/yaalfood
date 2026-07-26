@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+
+# Unused source/reference files (not needed for the deployed site)
+Yaal Menu .pdf
+Calque 12 copieaaa - Modifié.png
+assets/images/pizza margarita.jpg
+assets/images/delicious-pizza-with-pepperoni-mushrooms-and-oli-*.jpg
