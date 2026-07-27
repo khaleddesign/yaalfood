@@ -72,8 +72,31 @@ function priceHTML(p) {
   return `<span class="price-pill seul">Seul ${p.seul.toFixed(2)} €</span><span class="price-pill menu">Menu ${p.menu.toFixed(2)} €</span>`;
 }
 
+const CATEGORY_PAGES = {
+  sandwich: 'menu-sandwich-mixte.html',
+  kebab: 'menu-kebab.html',
+  chicken: 'menu-chicken.html',
+  tacos: 'menu-tacos.html',
+  pizza: 'menu-pizza.html',
+  burgers: 'menu-burgers.html',
+};
+
+function previewForAll() {
+  const cats = ['sandwich', 'kebab', 'chicken', 'tacos', 'pizza', 'burgers'];
+  return cats.map(cat => {
+    const items = PRODUCTS.filter(p => p.cat === cat);
+    return items.find(p => p.tag) || items[0];
+  }).filter(Boolean);
+}
+
 function renderGrid(filter) {
-  const list = filter === 'tous' ? PRODUCTS : PRODUCTS.filter(p => p.cat === filter);
+  const list = filter === 'tous'
+    ? previewForAll()
+    : PRODUCTS.filter(p => p.cat === filter).slice(0, 6);
+
+  const ctaLink = document.querySelector('.menu-cta a');
+  if (ctaLink) ctaLink.href = filter === 'tous' ? 'menu.html' : (CATEGORY_PAGES[filter] || 'menu.html');
+
   grid.innerHTML = list.map((p, i) => `
     <article class="product-card${p.promo ? ' promo' : ''}" style="transition-delay:${Math.min(i * 50, 400)}ms">
       ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ''}
@@ -138,37 +161,59 @@ observeReveals();
 const heroTrack = document.getElementById('carouselTrack');
 const heroPrevBtn = document.getElementById('prevBtn');
 const heroNextBtn = document.getElementById('nextBtn');
+const heroDotsWrap = document.getElementById('heroDots');
+
+const heroSlides = Array.from(heroTrack.querySelectorAll('.product-slide'));
 
 function heroSlideBy(direction) {
   const slide = heroTrack.querySelector('.product-slide');
   const amount = slide.offsetWidth * direction;
   heroTrack.scrollBy({ left: amount, behavior: 'smooth' });
 }
-heroPrevBtn.addEventListener('click', () => heroSlideBy(-1));
-heroNextBtn.addEventListener('click', () => heroSlideBy(1));
 
-const heroSlides = Array.from(heroTrack.querySelectorAll('.product-slide'));
+function heroGoToIndex(index) {
+  const slide = heroTrack.querySelector('.product-slide');
+  heroTrack.scrollTo({ left: slide.offsetWidth * index, behavior: 'smooth' });
+}
+
+/* Dots (visible on mobile) */
+heroDotsWrap.innerHTML = heroSlides.map((_, i) =>
+  `<span class="zz-hero-dot${i === 0 ? ' active' : ''}" data-index="${i}"></span>`
+).join('');
+const heroDots = heroDotsWrap.querySelectorAll('.zz-hero-dot');
+heroDots.forEach(dot => dot.addEventListener('click', () => {
+  restartHeroAutoplay();
+  heroGoToIndex(Number(dot.dataset.index));
+}));
+
+heroPrevBtn.addEventListener('click', () => { restartHeroAutoplay(); heroSlideBy(-1); });
+heroNextBtn.addEventListener('click', () => { restartHeroAutoplay(); heroSlideBy(1); });
+
 let heroCenterTicking = false;
 let heroCurrentCenter = null;
+let heroCurrentIndex = 0;
 
 function updateHeroCenterSlide() {
   const viewCenter = window.innerWidth / 2;
   let closest = null;
   let closestDist = Infinity;
-  heroSlides.forEach(slide => {
+  let closestIndex = 0;
+  heroSlides.forEach((slide, i) => {
     const rect = slide.getBoundingClientRect();
     const slideCenter = rect.left + rect.width / 2;
     const dist = Math.abs(slideCenter - viewCenter);
-    if (dist < closestDist) { closestDist = dist; closest = slide; }
+    if (dist < closestDist) { closestDist = dist; closest = slide; closestIndex = i; }
   });
   heroSlides.forEach(slide => slide.classList.toggle('is-center', slide === closest));
 
   if (closest !== heroCurrentCenter) {
     heroCurrentCenter = closest;
+    heroCurrentIndex = closestIndex;
     const img = closest.querySelector('img');
     img.classList.remove('pulse');
     void img.offsetWidth;
     img.classList.add('pulse');
+    heroDots.forEach(dot => dot.classList.toggle('active', Number(dot.dataset.index) === closestIndex));
   }
   heroCenterTicking = false;
 }
@@ -177,6 +222,23 @@ heroTrack.addEventListener('scroll', () => {
 }, { passive: true });
 window.addEventListener('resize', updateHeroCenterSlide);
 updateHeroCenterSlide();
+
+/* Auto-play: advance every 5s, loop back to start; pauses briefly after manual interaction */
+const HERO_AUTOPLAY_DELAY = 5000;
+let heroAutoplayTimer = null;
+
+function startHeroAutoplay() {
+  heroAutoplayTimer = setInterval(() => {
+    const next = (heroCurrentIndex + 1) % heroSlides.length;
+    heroGoToIndex(next);
+  }, HERO_AUTOPLAY_DELAY);
+}
+function restartHeroAutoplay() {
+  clearInterval(heroAutoplayTimer);
+  startHeroAutoplay();
+}
+heroTrack.addEventListener('touchstart', restartHeroAutoplay, { passive: true });
+startHeroAutoplay();
 
 /* Pizza variant thumbnails — swap main photo + title on click */
 const pizzaMainImg = document.getElementById('pizzaMainImg');

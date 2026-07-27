@@ -108,11 +108,14 @@
   </button>
 
   <div class="carousel-track" id="carouselTrack">
-    <article class="product-slide">
+    <article class="product-slide" data-href="menu-kebab.html">
       <img src="assets/images/kebab-hero.png" alt="Kebab Signature">
       <h2 class="slide-title">KEBAB<br>SIGNATURE</h2>
+      <a href="menu-kebab.html" class="slide-cta" aria-label="Voir les kebabs">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+      </a>
     </article>
-    <article class="product-slide">
+    <article class="product-slide" data-href="menu-pizza.html">
       <img src="assets/images/pizza-hero.png" alt="Signature Pizza" id="pizzaMainImg">
       <h2 class="slide-title" id="pizzaMainTitle">SIGNATURE<br>PIZZA</h2>
       <div class="variant-row" id="pizzaVariants">
@@ -141,20 +144,31 @@
           <img src="assets/images/pizza-viande-hachee.png" alt="Viande Hachée">
         </button>
       </div>
+      <a href="menu-pizza.html" class="slide-cta" aria-label="Voir les pizzas">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+      </a>
     </article>
-    <article class="product-slide">
+    <article class="product-slide" data-href="menu-burgers.html">
       <img src="assets/images/burger-hero.png" alt="Signature Burger">
       <h2 class="slide-title">SIGNATURE<br>BURGER</h2>
+      <a href="menu-burgers.html" class="slide-cta" aria-label="Voir les burgers">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+      </a>
     </article>
-    <article class="product-slide">
+    <article class="product-slide" data-href="menu-tacos.html">
       <img src="assets/images/tacos-hero.png" alt="Tacos Signature">
       <h2 class="slide-title">TACOS<br>SIGNATURE</h2>
+      <a href="menu-tacos.html" class="slide-cta" aria-label="Voir les tacos">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+      </a>
     </article>
   </div>
 
   <button class="carousel-arrow next" id="nextBtn" aria-label="Suivant">
     <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
   </button>
+
+  <div class="hero-dots" id="heroDots"></div>
 </section>
 
 <!-- ===== TRANSFORMATION SCROLL SECTION ===== -->
