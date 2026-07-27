@@ -67,7 +67,7 @@
 
 <link rel="icon" href="assets/images/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -101,23 +101,60 @@
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (carrousel produits) ===== -->
 <section class="hero" id="home">
-  <div class="hero-bg" data-speed="0.35">
-    <video class="hero-video" autoplay muted loop playsinline poster="assets/images/hero-bg.jpg">
-      <source src="assets/images/hero-video.mp4" type="video/mp4">
-    </video>
+  <button class="carousel-arrow prev" id="prevBtn" aria-label="Précédent">
+    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg>
+  </button>
+
+  <div class="carousel-track" id="carouselTrack">
+    <article class="product-slide">
+      <img src="assets/images/kebab-hero.png" alt="Kebab Signature">
+      <h2 class="slide-title">KEBAB<br>SIGNATURE</h2>
+    </article>
+    <article class="product-slide">
+      <img src="assets/images/pizza-hero.png" alt="Signature Pizza" id="pizzaMainImg">
+      <h2 class="slide-title" id="pizzaMainTitle">SIGNATURE<br>PIZZA</h2>
+      <div class="variant-row" id="pizzaVariants">
+        <button class="variant-thumb active" data-img="pizza-hero.png" data-name="SIGNATURE<br>PIZZA" aria-label="Margherita">
+          <img src="assets/images/pizza-hero.png" alt="Margherita">
+        </button>
+        <button class="variant-thumb" data-img="pizza-saumon.png" data-name="PIZZA<br>SAUMON" aria-label="Saumon">
+          <img src="assets/images/pizza-saumon.png" alt="Saumon">
+        </button>
+        <button class="variant-thumb" data-img="pizza-kebab-variant.png" data-name="PIZZA<br>KEBAB" aria-label="Kebab">
+          <img src="assets/images/pizza-kebab-variant.png" alt="Kebab">
+        </button>
+        <button class="variant-thumb" data-img="pizza-4fromages.png" data-name="4 FROMAGES" aria-label="4 Fromages">
+          <img src="assets/images/pizza-4fromages.png" alt="4 Fromages">
+        </button>
+        <button class="variant-thumb" data-img="pizza-4fromages-blanche.png" data-name="4 FROMAGES<br>BLANCHE" aria-label="4 Fromages Blanche">
+          <img src="assets/images/pizza-4fromages-blanche.png" alt="4 Fromages Blanche">
+        </button>
+        <button class="variant-thumb" data-img="pizza-jambon.png" data-name="PIZZA<br>JAMBON" aria-label="Jambon">
+          <img src="assets/images/pizza-jambon.png" alt="Jambon">
+        </button>
+        <button class="variant-thumb" data-img="pizza-poulet.png" data-name="PIZZA<br>POULET" aria-label="Poulet">
+          <img src="assets/images/pizza-poulet.png" alt="Poulet">
+        </button>
+        <button class="variant-thumb" data-img="pizza-viande-hachee.png" data-name="VIANDE<br>HACHÉE" aria-label="Viande Hachée">
+          <img src="assets/images/pizza-viande-hachee.png" alt="Viande Hachée">
+        </button>
+      </div>
+    </article>
+    <article class="product-slide">
+      <img src="assets/images/burger-hero.png" alt="Signature Burger">
+      <h2 class="slide-title">SIGNATURE<br>BURGER</h2>
+    </article>
+    <article class="product-slide">
+      <img src="assets/images/tacos-hero.png" alt="Tacos Signature">
+      <h2 class="slide-title">TACOS<br>SIGNATURE</h2>
+    </article>
   </div>
-  <div class="hero-scrim"></div>
-  <div class="hero-content">
-    <img src="assets/images/logo.png" alt="YAAL FOOD" class="hero-logo reveal zoom">
-    <h1 class="hero-headline reveal">KEBAB FAIT MAISON <span>•</span> PIZZA AUTHENTIQUE <span>•</span> TACOS GOURMET</h1>
-    <p class="hero-sub reveal">Produits frais &middot; Pain maison &middot; Frites maison &middot; Fait maison</p>
-    <a href="#menu" class="btn btn-primary btn-lg reveal">Commander Maintenant</a>
-  </div>
-  <a href="#transform" class="scroll-cue" aria-label="Défiler">
-    <span></span>
-  </a>
+
+  <button class="carousel-arrow next" id="nextBtn" aria-label="Suivant">
+    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+  </button>
 </section>
 
 <!-- ===== TRANSFORMATION SCROLL SECTION ===== -->

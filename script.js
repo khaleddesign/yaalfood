@@ -133,22 +133,68 @@ renderGrid('tous');
 observeReveals();
 
 /* ---------------------------------------------------------------------- */
-/* 4. HERO PARALLAX                                                         */
+/* 4. HERO PRODUCT CAROUSEL                                                  */
 /* ---------------------------------------------------------------------- */
-const heroBg = document.querySelector('.hero-bg');
-let heroTicking = false;
-window.addEventListener('scroll', () => {
-  if (!heroTicking) {
-    requestAnimationFrame(() => {
-      const y = window.scrollY;
-      if (y < window.innerHeight * 1.2) {
-        heroBg.style.transform = `translateY(${y * 0.35}px)`;
-      }
-      heroTicking = false;
-    });
-    heroTicking = true;
+const heroTrack = document.getElementById('carouselTrack');
+const heroPrevBtn = document.getElementById('prevBtn');
+const heroNextBtn = document.getElementById('nextBtn');
+
+function heroSlideBy(direction) {
+  const slide = heroTrack.querySelector('.product-slide');
+  const amount = slide.offsetWidth * direction;
+  heroTrack.scrollBy({ left: amount, behavior: 'smooth' });
+}
+heroPrevBtn.addEventListener('click', () => heroSlideBy(-1));
+heroNextBtn.addEventListener('click', () => heroSlideBy(1));
+
+const heroSlides = Array.from(heroTrack.querySelectorAll('.product-slide'));
+let heroCenterTicking = false;
+let heroCurrentCenter = null;
+
+function updateHeroCenterSlide() {
+  const viewCenter = window.innerWidth / 2;
+  let closest = null;
+  let closestDist = Infinity;
+  heroSlides.forEach(slide => {
+    const rect = slide.getBoundingClientRect();
+    const slideCenter = rect.left + rect.width / 2;
+    const dist = Math.abs(slideCenter - viewCenter);
+    if (dist < closestDist) { closestDist = dist; closest = slide; }
+  });
+  heroSlides.forEach(slide => slide.classList.toggle('is-center', slide === closest));
+
+  if (closest !== heroCurrentCenter) {
+    heroCurrentCenter = closest;
+    const img = closest.querySelector('img');
+    img.classList.remove('pulse');
+    void img.offsetWidth;
+    img.classList.add('pulse');
   }
+  heroCenterTicking = false;
+}
+heroTrack.addEventListener('scroll', () => {
+  if (!heroCenterTicking) { requestAnimationFrame(updateHeroCenterSlide); heroCenterTicking = true; }
 }, { passive: true });
+window.addEventListener('resize', updateHeroCenterSlide);
+updateHeroCenterSlide();
+
+/* Pizza variant thumbnails — swap main photo + title on click */
+const pizzaMainImg = document.getElementById('pizzaMainImg');
+const pizzaMainTitle = document.getElementById('pizzaMainTitle');
+const pizzaVariants = document.getElementById('pizzaVariants');
+if (pizzaVariants) {
+  pizzaVariants.addEventListener('click', (e) => {
+    const btn = e.target.closest('.variant-thumb');
+    if (!btn) return;
+    pizzaVariants.querySelectorAll('.variant-thumb').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    pizzaMainImg.src = `assets/images/${btn.dataset.img}`;
+    pizzaMainTitle.innerHTML = btn.dataset.name;
+    pizzaMainImg.classList.remove('pulse');
+    void pizzaMainImg.offsetWidth;
+    pizzaMainImg.classList.add('pulse');
+  });
+}
 
 /* ---------------------------------------------------------------------- */
 /* 5. MORPH TRANSFORMATION SCROLL SEQUENCE                                  */
