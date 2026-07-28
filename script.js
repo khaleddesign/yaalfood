@@ -49,10 +49,10 @@ const PRODUCTS = [
 ];
 
 const MORPH_STAGES = [
-  { kicker: '01 — SIGNATURE', title: 'BEEF STACK', desc: 'Double smash beef, cheddar fondu, sauce maison. Notre burger le plus généreux.', bg: 'radial-gradient(circle at 50% 40%, #4a0e10, #111111 70%)' },
-  { kicker: '02 — PIZZERIA', title: 'MARGHERITA PIZZA', desc: 'Pâte fine, tomate, mozzarella fondante, basilic frais. L\'authenticité italienne.', bg: 'radial-gradient(circle at 50% 40%, #4a0e10, #111111 70%)' },
-  { kicker: '03 — FAIT MAISON', title: 'KEBAB FAIT MAISON', desc: 'Viande marinée, grillée à la broche, pain pétri sur place. La recette YAAL.', bg: 'radial-gradient(circle at 50% 40%, #4a0e10, #111111 70%)' },
-  { kicker: '04 — SIGNATURE', title: 'TACOS GOURMET', desc: 'Sauce fromagère maison, viande généreuse, frites croustillantes.', bg: 'radial-gradient(circle at 50% 40%, #4a0e10, #111111 70%)' },
+  { kicker: '01 — SIGNATURE', title: 'BEEF STACK', desc: 'Double smash beef, cheddar fondu, sauce maison. Notre burger le plus généreux.', bg: 'radial-gradient(circle at 50% 40%, #FF6B45, #B30510 70%)' },
+  { kicker: '02 — PIZZERIA', title: 'MARGHERITA PIZZA', desc: 'Pâte fine, tomate, mozzarella fondante, basilic frais. L\'authenticité italienne.', bg: 'radial-gradient(circle at 50% 40%, #FF6B45, #B30510 70%)' },
+  { kicker: '03 — FAIT MAISON', title: 'KEBAB FAIT MAISON', desc: 'Viande marinée, grillée à la broche, pain pétri sur place. La recette YAAL.', bg: 'radial-gradient(circle at 50% 40%, #FF6B45, #B30510 70%)' },
+  { kicker: '04 — SIGNATURE', title: 'TACOS GOURMET', desc: 'Sauce fromagère maison, viande généreuse, frites croustillantes.', bg: 'radial-gradient(circle at 50% 40%, #FF6B45, #B30510 70%)' },
 ];
 
 /* ---------------------------------------------------------------------- */

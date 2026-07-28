@@ -289,7 +289,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .morph-sticky {
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  background: var(--black);
+  background: var(--orange);
   transition: background 0.4s linear;
 }
 .morph-bg {
@@ -335,8 +335,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%); z-index: 2;
   display: flex; gap: 10px;
 }
-.morph-dot { width: 34px; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.25); transition: background 0.3s var(--ease); }
-.morph-dot.active { background: var(--orange); }
+.morph-dot { width: 34px; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.3); transition: background 0.3s var(--ease); }
+.morph-dot.active { background: var(--white); }
 
 /* ==========================================================================
    Menu Section
@@ -407,82 +407,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .price-pill.single { background: var(--gold); color: var(--black); }
 
 .menu-cta { text-align: center; margin-top: 50px; }
-
-/* ==========================================================================
-   Artisan / Pizza Maison
-   ========================================================================== */
-.artisan-section {
-  position: relative; overflow: hidden;
-  background: var(--black);
-  padding: 110px 0 90px;
-}
-.artisan-curve {
-  position: absolute; top: -55%; right: -30%;
-  width: 130%; height: 190%;
-  background: var(--white);
-  border-radius: 50%;
-  z-index: 0;
-}
-.artisan-inner { position: relative; z-index: 1; }
-
-.artisan-intro { max-width: 640px; margin-bottom: 90px; }
-.artisan-title {
-  font-family: 'Playfair Display', serif; font-weight: 500;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  line-height: 1.1; color: var(--white); margin: 10px 0 22px;
-}
-.artisan-desc { color: rgba(255,255,255,0.68); font-size: 1.05rem; line-height: 1.7; max-width: 560px; }
-.artisan-desc strong { color: var(--white); font-weight: 600; }
-
-/* Showcase: photo + overlapping card, optional side text */
-.artisan-showcase {
-  display: flex; align-items: center; gap: 90px; flex-wrap: wrap;
-  margin-bottom: 130px;
-  opacity: 0; transform: translateY(50px);
-  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-}
-.artisan-showcase.in-view { opacity: 1; transform: translateY(0); }
-.artisan-showcase.offset { justify-content: center; margin-left: 8%; }
-
-.artisan-photo-wrap { position: relative; flex: 0 0 auto; width: min(34vw, 380px); }
-.artisan-photo {
-  position: relative; z-index: 2;
-  width: 100%; aspect-ratio: 1 / 1; object-fit: contain;
-  filter: drop-shadow(0 25px 35px rgba(0,0,0,0.55));
-  transition: transform 0.5s var(--ease);
-}
-.artisan-showcase:hover .artisan-photo { transform: scale(1.04) rotate(-1.5deg); }
-
-.artisan-card {
-  position: absolute; z-index: 1; top: 50%; left: 62%;
-  transform: translateY(-50%);
-  width: 260px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 16px;
-  padding: 26px 26px 24px;
-}
-.artisan-name { font-family: 'Playfair Display', serif; font-weight: 600; font-style: italic; font-size: 1.5rem; color: var(--orange); margin-bottom: 4px; }
-.artisan-base { display: block; color: var(--white); font-family: var(--font-heading); font-size: 0.95rem; margin-bottom: 14px; }
-.artisan-ingredients { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.55; }
-
-.artisan-side { flex: 1 1 260px; max-width: 380px; }
-.artisan-side-title {
-  font-family: 'Playfair Display', serif; font-weight: 500;
-  font-size: clamp(1.8rem, 3vw, 2.3rem); line-height: 1.15;
-  color: var(--white); margin-bottom: 20px;
-}
-.artisan-side-desc { color: rgba(255,255,255,0.65); font-size: 0.98rem; line-height: 1.7; }
-.artisan-side-desc strong { color: var(--white); font-weight: 600; }
-
-.artisan-cta { text-align: center; margin-top: 20px; }
-
-@media (max-width: 860px) {
-  .artisan-showcase, .artisan-showcase.offset { flex-direction: column; margin-left: 0; text-align: center; gap: 20px; }
-  .artisan-photo-wrap { width: min(70vw, 320px); margin: 0 auto 24px; }
-  .artisan-card { position: static; transform: none; width: 100%; margin: 0 auto; text-align: left; }
-  .artisan-curve { top: -35%; right: -60%; width: 180%; }
-}
 
 /* ==========================================================================
    Why Us
