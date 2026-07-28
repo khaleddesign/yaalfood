@@ -425,7 +425,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .artisan-inner { position: relative; z-index: 1; }
 
-.artisan-intro { max-width: 640px; margin-bottom: 80px; }
+.artisan-intro { max-width: 640px; margin-bottom: 90px; }
 .artisan-title {
   font-family: 'Playfair Display', serif; font-weight: 500;
   font-size: clamp(2.4rem, 5vw, 3.6rem);
@@ -434,47 +434,53 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .artisan-desc { color: rgba(255,255,255,0.68); font-size: 1.05rem; line-height: 1.7; max-width: 560px; }
 .artisan-desc strong { color: var(--white); font-weight: 600; }
 
-.artisan-row {
-  display: flex; align-items: center; gap: 60px;
-  margin-bottom: 70px;
+/* Showcase: photo + overlapping card, optional side text */
+.artisan-showcase {
+  display: flex; align-items: center; gap: 90px; flex-wrap: wrap;
+  margin-bottom: 130px;
   opacity: 0; transform: translateY(50px);
   transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
 }
-.artisan-row.in-view { opacity: 1; transform: translateY(0); }
-.artisan-row.reverse { flex-direction: row-reverse; }
+.artisan-showcase.in-view { opacity: 1; transform: translateY(0); }
+.artisan-showcase.offset { justify-content: center; margin-left: 8%; }
 
+.artisan-photo-wrap { position: relative; flex: 0 0 auto; width: min(34vw, 380px); }
 .artisan-photo {
-  flex: 0 0 auto; width: min(38vw, 400px); aspect-ratio: 1 / 1;
-  border-radius: 50%; overflow: hidden;
-  background: radial-gradient(circle, #2a2a2a, #111111);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-  display: flex; align-items: center; justify-content: center;
-}
-.artisan-photo img {
-  width: 82%; height: 82%; object-fit: contain;
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4));
+  position: relative; z-index: 2;
+  width: 100%; aspect-ratio: 1 / 1; object-fit: contain;
+  filter: drop-shadow(0 25px 35px rgba(0,0,0,0.55));
   transition: transform 0.5s var(--ease);
 }
-.artisan-row:hover .artisan-photo img { transform: scale(1.06) rotate(-2deg); }
+.artisan-showcase:hover .artisan-photo { transform: scale(1.04) rotate(-1.5deg); }
 
 .artisan-card {
-  flex: 1 1 auto; max-width: 380px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 18px;
-  padding: 32px 34px;
-  backdrop-filter: blur(6px);
+  position: absolute; z-index: 1; top: 50%; left: 62%;
+  transform: translateY(-50%);
+  width: 260px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 16px;
+  padding: 26px 26px 24px;
 }
-.artisan-name { font-family: 'Playfair Display', serif; font-weight: 600; font-style: italic; font-size: 1.7rem; color: var(--orange); margin-bottom: 6px; }
-.artisan-base { display: block; color: var(--white); font-family: var(--font-heading); font-size: 1rem; margin-bottom: 16px; }
-.artisan-ingredients { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.6; }
+.artisan-name { font-family: 'Playfair Display', serif; font-weight: 600; font-style: italic; font-size: 1.5rem; color: var(--orange); margin-bottom: 4px; }
+.artisan-base { display: block; color: var(--white); font-family: var(--font-heading); font-size: 0.95rem; margin-bottom: 14px; }
+.artisan-ingredients { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.55; }
+
+.artisan-side { flex: 1 1 260px; max-width: 380px; }
+.artisan-side-title {
+  font-family: 'Playfair Display', serif; font-weight: 500;
+  font-size: clamp(1.8rem, 3vw, 2.3rem); line-height: 1.15;
+  color: var(--white); margin-bottom: 20px;
+}
+.artisan-side-desc { color: rgba(255,255,255,0.65); font-size: 0.98rem; line-height: 1.7; }
+.artisan-side-desc strong { color: var(--white); font-weight: 600; }
 
 .artisan-cta { text-align: center; margin-top: 20px; }
 
 @media (max-width: 860px) {
-  .artisan-row, .artisan-row.reverse { flex-direction: column; text-align: center; gap: 30px; }
-  .artisan-photo { width: min(70vw, 320px); margin: 0 auto; }
-  .artisan-card { max-width: 100%; }
+  .artisan-showcase, .artisan-showcase.offset { flex-direction: column; margin-left: 0; text-align: center; gap: 20px; }
+  .artisan-photo-wrap { width: min(70vw, 320px); margin: 0 auto 24px; }
+  .artisan-card { position: static; transform: none; width: 100%; margin: 0 auto; text-align: left; }
   .artisan-curve { top: -35%; right: -60%; width: 180%; }
 }
 
