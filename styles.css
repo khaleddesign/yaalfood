@@ -409,29 +409,74 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .menu-cta { text-align: center; margin-top: 50px; }
 
 /* ==========================================================================
-   Featured / Signatures
+   Artisan / Pizza Maison
    ========================================================================== */
-.featured-section { padding: 100px 0; background: var(--white); }
-.featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
-.featured-card {
-  position: relative; border-radius: var(--radius); overflow: hidden; height: 380px;
-  box-shadow: var(--shadow-soft);
-  opacity: 0; transform: translateY(40px) scale(0.96);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease), box-shadow 0.4s var(--ease);
+.artisan-section {
+  position: relative; overflow: hidden;
+  background: var(--black);
+  padding: 110px 0 90px;
 }
-.featured-card.in-view { opacity: 1; transform: translateY(0) scale(1); }
-.featured-card:hover { box-shadow: var(--shadow-strong); }
-.featured-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
-.featured-card:hover img { transform: scale(1.12); }
-.featured-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,0.85));
-  display: flex; flex-direction: column; justify-content: flex-end; padding: 26px;
-  color: var(--white);
+.artisan-curve {
+  position: absolute; top: -55%; right: -30%;
+  width: 130%; height: 190%;
+  background: var(--white);
+  border-radius: 50%;
+  z-index: 0;
 }
-.featured-overlay .tag { color: var(--gold); font-family: var(--font-heading); font-weight: 700; font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
-.featured-overlay h3 { font-family: var(--font-title); font-size: 1.7rem; letter-spacing: 0.5px; margin-bottom: 6px; }
-.featured-overlay p { font-size: 0.88rem; color: rgba(255,255,255,0.85); }
+.artisan-inner { position: relative; z-index: 1; }
+
+.artisan-intro { max-width: 640px; margin-bottom: 80px; }
+.artisan-title {
+  font-family: 'Playfair Display', serif; font-weight: 500;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.1; color: var(--white); margin: 10px 0 22px;
+}
+.artisan-desc { color: rgba(255,255,255,0.68); font-size: 1.05rem; line-height: 1.7; max-width: 560px; }
+.artisan-desc strong { color: var(--white); font-weight: 600; }
+
+.artisan-row {
+  display: flex; align-items: center; gap: 60px;
+  margin-bottom: 70px;
+  opacity: 0; transform: translateY(50px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.artisan-row.in-view { opacity: 1; transform: translateY(0); }
+.artisan-row.reverse { flex-direction: row-reverse; }
+
+.artisan-photo {
+  flex: 0 0 auto; width: min(38vw, 400px); aspect-ratio: 1 / 1;
+  border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle, #2a2a2a, #111111);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+}
+.artisan-photo img {
+  width: 82%; height: 82%; object-fit: contain;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4));
+  transition: transform 0.5s var(--ease);
+}
+.artisan-row:hover .artisan-photo img { transform: scale(1.06) rotate(-2deg); }
+
+.artisan-card {
+  flex: 1 1 auto; max-width: 380px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 32px 34px;
+  backdrop-filter: blur(6px);
+}
+.artisan-name { font-family: 'Playfair Display', serif; font-weight: 600; font-style: italic; font-size: 1.7rem; color: var(--orange); margin-bottom: 6px; }
+.artisan-base { display: block; color: var(--white); font-family: var(--font-heading); font-size: 1rem; margin-bottom: 16px; }
+.artisan-ingredients { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.6; }
+
+.artisan-cta { text-align: center; margin-top: 20px; }
+
+@media (max-width: 860px) {
+  .artisan-row, .artisan-row.reverse { flex-direction: column; text-align: center; gap: 30px; }
+  .artisan-photo { width: min(70vw, 320px); margin: 0 auto; }
+  .artisan-card { max-width: 100%; }
+  .artisan-curve { top: -35%; right: -60%; width: 180%; }
+}
 
 /* ==========================================================================
    Why Us

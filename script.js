@@ -48,13 +48,6 @@ const PRODUCTS = [
   { cat: 'burgers', img: 'prod-crock-monsieur.png', name: 'Crock Monsieur', desc: 'Jambon, fromage gratiné', single: 2.50 },
 ];
 
-const FEATURED = [
-  { img: 'prod-kebab-berliner.png', tag: 'Signature', name: 'Kebab Berliner', desc: 'Crudités, sauce, légumes grillés, frites' },
-  { img: 'prod-tacos.png', tag: 'Populaire', name: 'Tacos XL', desc: '3 viandes au choix, sauce fromagère maison' },
-  { img: 'prod-pizza.png', tag: 'Nouveau', name: 'Trois Viandes', desc: 'Jambon, merguez, viande hachée' },
-  { img: 'prod-smash-burger.png', tag: 'Best-seller', name: 'Smash Burger', desc: 'Double cheese façon smash' },
-];
-
 const MORPH_STAGES = [
   { kicker: '01 — SIGNATURE', title: 'BEEF STACK', desc: 'Double smash beef, cheddar fondu, sauce maison. Notre burger le plus généreux.', bg: 'radial-gradient(circle at 50% 40%, #4a0e10, #111111 70%)' },
   { kicker: '02 — PIZZERIA', title: 'MARGHERITA PIZZA', desc: 'Pâte fine, tomate, mozzarella fondante, basilic frais. L\'authenticité italienne.', bg: 'radial-gradient(circle at 50% 40%, #4a0e10, #111111 70%)' },
@@ -123,19 +116,6 @@ filterBtns.forEach(btn => {
   });
 });
 grid.style.transition = 'opacity 0.25s ease';
-
-/* Featured grid */
-const featuredGrid = document.getElementById('featuredGrid');
-featuredGrid.innerHTML = FEATURED.map((f, i) => `
-  <div class="featured-card reveal" style="transition-delay:${i * 80}ms">
-    <img src="assets/images/${f.img}" alt="${f.name}" loading="lazy">
-    <div class="featured-overlay">
-      <span class="tag">${f.tag}</span>
-      <h3>${f.name}</h3>
-      <p>${f.desc}</p>
-    </div>
-  </div>
-`).join('');
 
 /* ---------------------------------------------------------------------- */
 /* 3. SCROLL REVEAL                                                         */
